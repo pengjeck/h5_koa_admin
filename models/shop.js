@@ -3,7 +3,10 @@ const schema = mongoose.Schema
 
 
 let shopSchema = new schema({
-    name: String,
+    name: {
+        type: String,
+        unique: true
+    },
     url: String,
     logo_url: String,
     type: String,   // 类型
