@@ -20,6 +20,7 @@ module.exports = async (ctx, next) => {
             }
         }
     } else {
+        ctx.status = 200;
         if(ctx.body) {
             ctx.body = {
                 code: 1,

@@ -26,7 +26,13 @@ class ShopController {
                     let shop = ctx.request.body;
                     if (shop && shop.name) {
                         let res = await Shop.deleteOne({ name: shop.name });
-                        ctx.body = util.format('deleted shop %s', shop.name);
+                        if (res) {
+                            ctx.status = 200;
+                            ctx.body = util.format('deleted shop %s', shop.name);
+                        } else {
+                            ctx.status = 500;
+                            ctx.body = '删除失败';
+                        }
                     }
                 }
             } catch (e) {
@@ -68,6 +74,8 @@ class ShopController {
                         if (!res) {
                             ctx.status = 500;
                             ctx.body = '添加失败';
+                        } else {
+                            ctx.status = 200;
                         }
                     } else {
                         ctx.status = 400;
@@ -108,7 +116,9 @@ class ShopController {
                             user_n: shop.user_n,
                             custom_pos: shop.custom_pos
                         });
-                        if (!res) {
+                        if (res) {
+                            ctx.status = 200;
+                        } else {
                             ctx.status = 500;
                             ctx.body = '更新失败';
                         }
