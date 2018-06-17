@@ -9,6 +9,7 @@
     "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
+    "busboy": "^0.2.14",
     "co": "^4.6.0",
     "jsonwebtoken": "^8.3.0",
     "koa": "^2.0.1",

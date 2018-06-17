@@ -22,8 +22,7 @@ app.use(res_fomater);
 app.use(apiRouter.routes());
 
 // 登录认证 jwt
-const secret = config.jwt.secret;
-app.use(jwtkoa({ secret }).unless({
+app.use(jwtkoa({ secret: config.jwt.secret }).unless({
     path: ['/api/1.0/user/register',
         '/api/1.0/user/login']
 }))

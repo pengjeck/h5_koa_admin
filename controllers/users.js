@@ -4,16 +4,17 @@ const config = require('../config/common');
 
 class UserController {
     static async login(ctx, next) {
+        // TODO: 跳转到主页面
         const user = ctx.request.body;
         if (user && user.name && user.passwd_hash) {
             try {
                 let res = UserController.valify(user);
                 if (res) {
-                    let userToken = {
+                    let payload = {
                         id: user.name,
                         passwd_hash: user.passwd_hash
                     }
-                    const token = jwt.sign(userToken, config.jwt.secret, {'expiresIn': '12h'});
+                    const token = jwt.sign(payload, config.jwt.secret, { 'expiresIn': '12h' });
                     ctx.body = {
                         token: token
                     }
@@ -36,22 +37,17 @@ class UserController {
             });
             try {
                 let tmp = await n_user.save();
-                console.log(tmp);
-                ctx.body = {
-                    message: 'success',
-                    code: 0
+                if (!tmp) {
+                    ctx.status = 500;
+                    ctx.body = '注册失败';
                 }
             } catch (e) {
-                ctx.body = {
-                    message: 'error, ' + e,
-                    code: 1
-                }
+                ctx.status = 500;
+                ctx.body = '注册失败';
             }
         } else {
-            ctx.body = {
-                message: 'param err',
-                code: -1
-            }
+            ctx.status = 400;
+            ctx.body = '参数错误';
         }
     }
     // 验证用户用户信息是否正确
@@ -63,10 +59,10 @@ class UserController {
             } else {
                 return false;
             }
-        } catch(err) {
+        } catch (err) {
             return false;
         }
-        
+
     }
 }
 

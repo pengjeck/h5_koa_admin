@@ -6,7 +6,7 @@ module.exports = async (ctx, next) => {
     await next();
 
     //如果有返回数据，将返回数据添加到data中
-    if (ctx.res.statusCode == 200) {
+    if (ctx.status == 200) {
         if (ctx.body) {
             ctx.body = {
                 code: 0,
@@ -20,9 +20,17 @@ module.exports = async (ctx, next) => {
             }
         }
     } else {
-        ctx.body = {
-            code: 1,
-            message: ctx.body,
+        if(ctx.body) {
+            ctx.body = {
+                code: 1,
+                message: ctx.body,
+            }
+        } else {
+            ctx.body = {
+                code: 1,
+                message: 'error'
+            }
         }
+        
     }
 }
