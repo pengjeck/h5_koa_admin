@@ -34,7 +34,8 @@ app.use(serve(__dirname + '/public'));
 app.use(jwtkoa({ secret: config.jwt.secret }).unless({
     path: ['/api/1.0/user/register',
         '/api/1.0/user/login',
-        '/api/1.0/shop/findAll']
+        '/api/1.0/shop/findAll',
+        '/api/1.0/upload']
 }))
 
 app.listen(3000, () => {
