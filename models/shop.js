@@ -15,11 +15,7 @@ let shopSchema = new schema({
     describe: String,
     user_n: Number,
     // 暂不提供自定义排序功能
-    // custom_pos: {
-    //     type: Number,
-    //     unique: true,
-    //     required: true
-    // }
+    custom_pos: Number
 })
 
 let Shop = mongoose.model('Shop', shopSchema)

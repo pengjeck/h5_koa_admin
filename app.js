@@ -19,7 +19,7 @@ mongoose.connect(config.mongo.dbUrl);
 const app = new koa();
 
 app.use(bodyParser());
-app.use( async (ctx, next) => {
+app.use(async (ctx, next) => {
     // 支持跨域访问
     ctx.set('Access-Control-Allow-Origin', '*');
     ctx.set("Access-Control-Allow-Headers", "Content-Type,Access-Token");
