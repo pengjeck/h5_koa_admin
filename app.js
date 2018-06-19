@@ -19,16 +19,22 @@ mongoose.connect(config.mongo.dbUrl);
 const app = new koa();
 
 app.use(bodyParser());
+app.use( async (ctx, next) => {
+    // 支持跨域访问
+    ctx.set('Access-Control-Allow-Origin', '*');
+    ctx.set("Access-Control-Allow-Headers", "Content-Type,Access-Token");
+
+    await next();
+});
 app.use(loggerMiddle);
 app.use(res_fomater);
 app.use(apiRouter.routes());
 app.use(serve(__dirname + '/public'));
-
 // 登录认证 jwt
 app.use(jwtkoa({ secret: config.jwt.secret }).unless({
     path: ['/api/1.0/user/register',
         '/api/1.0/user/login',
-        '/api/1.0/upload']
+        '/api/1.0/shop/findAll']
 }))
 
 app.listen(3000, () => {

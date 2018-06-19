@@ -21,6 +21,7 @@ module.exports = async (ctx, next) => {
         }
     } else {
         ctx.status = 200;
+        console.log(ctx.body);
         if(ctx.body) {
             ctx.body = {
                 code: 1,
