@@ -32,10 +32,12 @@ app.use(apiRouter.routes());
 app.use(serve(__dirname + '/public'));
 // 登录认证 jwt
 app.use(jwtkoa({ secret: config.jwt.secret }).unless({
-    path: ['/api/1.0/user/register',
+    path: [
+        '/favicon.ico',
         '/api/1.0/user/login',
         '/api/1.0/shop/findAll',
-        '/api/1.0/upload',],
+        '/api/1.0/upload',
+    ],
     method: 'OPTIONS'
 }))
 
