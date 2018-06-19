@@ -4,7 +4,6 @@
 module.exports = async (ctx, next) => {
     //先去执行路由
     await next();
-    console.log(ctx.type);
     if (ctx.type == 'image/png' || ctx.type == 'image/jpeg') {
     } else {
         if (ctx.status == 200) {
@@ -37,8 +36,4 @@ module.exports = async (ctx, next) => {
 
         }
     }
-    // if (!(ctx.type == 'image/jpeg') || (ctx.type == 'image/png')) {
-    //如果有返回数据，将返回数据添加到data中
-
-    // }
 }

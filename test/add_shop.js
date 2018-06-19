@@ -22,12 +22,10 @@ axiso.post('http://localhost:3000/api/1.0/user/login', {
             name: Math.random().toString(36).substr(2),
             url: 'url',
             logo_url: 'logo_url',
-            type: 'type',
             tag: 'tag',
             feature: 'feature',
             describe: 'describe',
             user_n: 12,
-            custom_pos: 1
         }
     }).then((response) => {
         console.log(response.data);

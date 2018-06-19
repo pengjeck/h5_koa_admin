@@ -22,7 +22,7 @@ app.use(bodyParser());
 app.use(async (ctx, next) => {
     // 支持跨域访问
     ctx.set('Access-Control-Allow-Origin', '*');
-    ctx.set("Access-Control-Allow-Headers", "Content-Type,Access-Token");
+    ctx.set("Access-Control-Allow-Headers", "Content-Type,Access-Token,authorization");
 
     await next();
 });
@@ -35,7 +35,8 @@ app.use(jwtkoa({ secret: config.jwt.secret }).unless({
     path: ['/api/1.0/user/register',
         '/api/1.0/user/login',
         '/api/1.0/shop/findAll',
-        '/api/1.0/upload']
+        '/api/1.0/upload',],
+    method: 'OPTIONS'
 }))
 
 app.listen(3000, () => {

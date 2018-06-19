@@ -16,7 +16,7 @@ class UserController {
             id: user.name,
             passwd_hash: user.passwd_hash
           }
-          const token = jwt.sign(payload, config.jwt.secret, { 'expiresIn': '12h' });
+          const token = jwt.sign(payload, config.jwt.secret, { 'expiresIn': '30d' });
           ctx.body = {
             token: token
           }

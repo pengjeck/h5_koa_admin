@@ -11,8 +11,14 @@ async function upload (ctx) {
             fileType: 'img',
             path: serverFilePath
         })
-
-        ctx.body = result
+        if (result.success) {
+            ctx.body = {
+                fileName: result.fileName
+            }
+        } else {
+            ctx.status = 500;
+            ctx.body = '文件保存失败';
+        }
     } else {
         ctx.status = 405;
         ctx.body = '方法错误，上传失败';
