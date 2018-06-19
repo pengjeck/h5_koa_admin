@@ -1,5 +1,4 @@
 const config = require('../config/common');
-const mongoose = require('mongoose');
 const Shop = require('../models/shop');
 const jwt = require('jsonwebtoken');
 const util = require('util');

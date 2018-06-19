@@ -10,16 +10,16 @@ let shopSchema = new schema({
     },
     url: String,
     logo_url: String,
-    type: String,   // 类型
-    tag: String,  // 标题右侧
+    tags: [[String]],  // 标题右侧，同时作为筛选条件
     feature: String,  // 右上角
     describe: String,
     user_n: Number,
-    custom_pos: {
-        type: Number,
-        unique: true,
-        required: true
-    }
+    // 暂不提供自定义排序功能
+    // custom_pos: {
+    //     type: Number,
+    //     unique: true,
+    //     required: true
+    // }
 })
 
 let Shop = mongoose.model('Shop', shopSchema)

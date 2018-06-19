@@ -4,7 +4,6 @@ const config = require('../config/common');
 
 class UserController {
     static async login(ctx, next) {
-        // TODO: 跳转到主页面
         const user = ctx.request.body;
         if (user && user.name && user.passwd_hash) {
             try {

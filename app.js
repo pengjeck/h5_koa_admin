@@ -4,6 +4,8 @@ const koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 const jwtkoa = require('koa-jwt');
+// 系统依赖
+const serve = require('koa-static');
 // 加载中间件
 const loggerMiddle = require('./middleware/logger');
 const res_fomater = require('./middleware/res_formater');
@@ -13,18 +15,20 @@ const apiRouter = require('./router');
 const config = require('./config/common');
 mongoose.connect(config.mongo.dbUrl);
 
+
 const app = new koa();
 
-// 自定义的一个中间件
 app.use(bodyParser());
 app.use(loggerMiddle);
 app.use(res_fomater);
 app.use(apiRouter.routes());
+app.use(serve(__dirname + '/public'));
 
 // 登录认证 jwt
 app.use(jwtkoa({ secret: config.jwt.secret }).unless({
     path: ['/api/1.0/user/register',
-        '/api/1.0/user/login']
+        '/api/1.0/user/login',
+        '/api/1.0/upload']
 }))
 
 app.listen(3000, () => {

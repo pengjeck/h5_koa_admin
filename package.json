@@ -17,6 +17,7 @@
     "koa-jwt": "^3.3.2",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
+    "koa-static": "^4.0.3",
     "mongodb": "^3.0.10",
     "mongoose": "^5.1.5",
     "snyk": "^1.24.6"
