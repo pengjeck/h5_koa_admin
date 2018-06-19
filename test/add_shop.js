@@ -22,7 +22,7 @@ axiso.post('http://localhost:3000/api/1.0/user/login', {
             name: Math.random().toString(36).substr(2),
             url: 'url',
             logo_url: 'logo_url',
-            tag: 'tag',
+            tags: [1, 2],
             feature: 'feature',
             describe: 'describe',
             user_n: 12,

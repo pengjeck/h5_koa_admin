@@ -63,7 +63,7 @@ class ShopController {
               name: shop.name,
               url: shop.url,
               logo_url: shop.logo_url,
-              tag: shop.tag,
+              tags: shop.tags,
               feature: shop.feature,
               describe: shop.describe,
               user_n: shop.user_n,
