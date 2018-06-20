@@ -50,7 +50,7 @@ const options = {
 };
 // start the server
 // http.createServer(app.callback()).listen(3000, 'localhost', listeningReporter);
-https.createServer(options, app.callback()).listen(3000, 'localhost', listeningReporter);
+https.createServer(options, app.callback()).listen(3000, '0.0.0.0', listeningReporter);
 function listeningReporter() {
     const { address, port } = this.address();
     const protocol = this.addContext ? 'https' : 'http';
