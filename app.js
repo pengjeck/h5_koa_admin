@@ -4,6 +4,9 @@ const koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 const jwtkoa = require('koa-jwt');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
 // 系统依赖
 const serve = require('koa-static');
 // 加载中间件
@@ -41,6 +44,23 @@ app.use(jwtkoa({ secret: config.jwt.secret }).unless({
     method: 'OPTIONS'
 }))
 
-app.listen(3000, () => {
-    console.log('server: 127.0.0.1:3000');
-});
+const options = {
+    key: fs.readFileSync('./ssl/2_www.serious-playing.com.cn.key'),
+    cert: fs.readFileSync('./ssl/1_www.serious-playing.com.cn_bundle.crt')
+};
+// start the server
+// http.createServer(app.callback()).listen(3000, 'localhost', listeningReporter);
+https.createServer(options, app.callback()).listen(3001, 'localhost', listeningReporter);
+function listeningReporter() {
+    const { address, port } = this.address();
+    const protocol = this.addContext ? 'https' : 'http';
+    console.log(`Listening on ${protocol}://${address}:${port}...`);
+}
+// https.createServer(options, () => {
+//     console.log('server: 127.0.0.1:3000');
+// }).listen(3000);
+
+
+// app.listen(3001, () => {
+//     console.log('server: 127.0.0.1:3001');
+// });
