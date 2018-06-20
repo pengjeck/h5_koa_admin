@@ -7,7 +7,7 @@ function cryptPwd(password) {
     return md5.update(password).digest('hex');
 }
 
-axiso.post('http://localhost:3000/api/1.0/user/login', {
+axiso.post('https//serious-playing.com.cn:3000/api/1.0/user/login', {
     name: 'admin',
     passwd_hash: cryptPwd('admin123')
 }).then((response) => {

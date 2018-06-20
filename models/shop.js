@@ -11,11 +11,10 @@ let shopSchema = new schema({
     url: String,
     logo_url: String,
     tags: [String],  // 标题右侧，同时作为筛选条件
+    loan_range: [Number],  // 贷款额度
     feature: String,  // 右上角
     describe: String,
     user_n: Number,
-    // 暂不提供自定义排序功能
-    custom_pos: Number
 })
 
 let Shop = mongoose.model('Shop', shopSchema)

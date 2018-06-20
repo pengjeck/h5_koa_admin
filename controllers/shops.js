@@ -65,6 +65,7 @@ class ShopController {
               logo_url: shop.logo_url,
               tags: shop.tags,
               feature: shop.feature,
+              loan_range: shop.loan_range,
               describe: shop.describe,
               user_n: shop.user_n,
             })
