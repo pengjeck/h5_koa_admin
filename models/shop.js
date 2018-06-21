@@ -15,6 +15,7 @@ let shopSchema = new schema({
     feature: String,  // 右上角
     describe: String,
     user_n: Number,
+    weight: Number   // 权重，客户端按照这个排序
 })
 
 let Shop = mongoose.model('Shop', shopSchema)

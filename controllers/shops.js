@@ -68,6 +68,7 @@ class ShopController {
               loan_range: shop.loan_range,
               describe: shop.describe,
               user_n: shop.user_n,
+              weight: shop.weight
             })
             let res = await n_shop.save();
             if (!res) {
@@ -99,7 +100,7 @@ class ShopController {
       ctx.body = 'token错误'
     }
   }
-  // 修改商户信息
+  // 修改商户信息[废弃不用]
   static async modify(ctx, next) {
     const token = ctx.header.authorization  // 获取jwt
     let payload
