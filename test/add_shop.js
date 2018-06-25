@@ -7,14 +7,14 @@ function cryptPwd(password) {
     return md5.update(password).digest('hex');
 }
 
-axiso.post('http://localhost:3000/api/1.0/user/login', {
+axiso.post('https://serious-playing.com.cn:3000/api/1.0/user/login', {
     name: 'admin',
     passwd_hash: cryptPwd('admin123')
 }).then((response) => {
     let token = response.data.data.token;
     axiso({
         method: 'post',
-        url: 'http://localhost:3000/api/1.0/shop/add',
+        url: 'https://serious-playing.com.cn:3000/api/1.0/shop/add',
         headers: {
             authorization: token
         },
@@ -22,10 +22,12 @@ axiso.post('http://localhost:3000/api/1.0/user/login', {
             name: Math.random().toString(36).substr(2),
             url: 'url',
             logo_url: 'logo_url',
-            tags: [1, 2],
+            loan_range: [1, 100],
+            tags: ['分期1个月、3个月、12个月，加长版，防止你乱来'],
             feature: 'feature',
             describe: 'describe',
             user_n: 12,
+            weight: 1,
         }
     }).then((response) => {
         console.log(response.data);

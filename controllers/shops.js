@@ -113,12 +113,12 @@ class ShopController {
             let res = await Shop.updateOne({ name: shop.name }, {
               url: shop.url,
               logo_url: shop.logo_url,
-              type: shop.type,
-              tag: shop.tag,
+              tags: shop.tags,
               feature: shop.feature,
+              loan_range: shop.loan_range,
               describe: shop.describe,
               user_n: shop.user_n,
-              custom_pos: shop.custom_pos
+              weight: shop.weight
             });
             if (res) {
               ctx.status = 200;
